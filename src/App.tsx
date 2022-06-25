@@ -20,14 +20,14 @@ function App() {
 
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="App">
                 <Links/>
                 <Content/>
                 {/*<HomeworkCounter/>*/}
                 {/*<HomeworkCounterTuesday/>*/}
             </div>
-        </BrowserRouter>
+        </HashRouter>
     )
 
     /*
