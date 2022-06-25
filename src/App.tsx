@@ -14,20 +14,20 @@ import Content from './components/Content/Content';
 // https://github.com/reactwg/react-18/discussions/21
 //     https://reactjs.org/blog/2022/03/29/react-v18.html#new-feature-automatic-batching
 
-const key = 'counterValue'
+// const key = 'counterValue'
 
 function App() {
 
 
     return (
-        <HashRouter>
+        <BrowserRouter>
             <div className="App">
                 <Links/>
                 <Content/>
                 {/*<HomeworkCounter/>*/}
                 {/*<HomeworkCounterTuesday/>*/}
             </div>
-        </HashRouter>
+        </BrowserRouter>
     )
 
     /*
