@@ -11,6 +11,7 @@ export type CounterSettingsPropsType = {
     onChangeMaxValue?: (value: number) => void
     saveSettings: () => void
     disabled?: boolean
+    // hide?: boolean
 }
 
 // const Counter: React.FC<CounterPropsType> = ({minValue, maxValue}) => {

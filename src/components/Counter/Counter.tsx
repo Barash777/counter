@@ -9,18 +9,22 @@ export type CounterPropsType = {
     incorrectParameters?: boolean
     changedParameters?: boolean
     setButton?: boolean
+    callbackSetButton?: () => void
+    // hide?: boolean
 }
 
 // const Counter: React.FC<CounterPropsType> = ({minValue, maxValue}) => {
 const Counter = ({
-                     minValue, maxValue, setButton, incorrectParameters, changedParameters
+                     minValue, maxValue, setButton, incorrectParameters, changedParameters, callbackSetButton
                  }: CounterPropsType) => {
 
     const [number, setNumber] = useState<number>(minValue)
 
-    // check the number after the settings were changed
-    number < minValue && setNumber(minValue)
-    number > maxValue && setNumber(maxValue)
+    // check the number after the settings were changed and the number is outside of the range
+    if (number < minValue || number > maxValue) {
+        setNumber(minValue)
+    }
+    // number > maxValue && setNumber(maxValue)
 
     const inc = () => {
         // number < maxValue && setNumber(++number)
@@ -57,7 +61,7 @@ const Counter = ({
             <div className={css.buttonsArea}>
                 <Button disabled={number >= maxValue || isDisabled()} name={'inc'} callback={inc}/>
                 <Button disabled={number <= minValue || isDisabled()} name={'reset'} callback={reset}/>
-                {setButton && <Button name={'set'} callback={() => {
+                {setButton && <Button name={'set'} callback={callbackSetButton ? callbackSetButton : () => {
                 }}/>}
             </div>
         </div>
