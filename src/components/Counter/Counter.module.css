@@ -1,0 +1,78 @@
+.table {
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin: auto auto;
+    /*width: 180px;*/
+    min-width: 250px;
+    width: fit-content;
+    /*max-width: 100%;*/
+}
+
+.displayArea {
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin: 5px;
+    /*width: 180px;*/
+    background: blanchedalmond;
+    padding-left: 5px;
+    padding-right: 5px;
+    /*height: fit-content;*/
+    /*height: fit-content;*/
+}
+
+.buttonsArea {
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin: 5px;
+    /*padding: 105px;*/
+}
+
+.data {
+    color: cornflowerblue;
+    line-height: 75px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.maxNumber {
+    color: red;
+}
+
+.incorrectParameters {
+    color: red;
+    line-height: 75px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.changedParameters {
+    /*color: red;*/
+    line-height: 75px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.settingsLine {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settingsLabel {
+    color: cornflowerblue;
+    font-weight: bold;
+    /*font-size: 10px;*/
+
+    /*margin: auto;*/
+}
+
+.settingsArea {
+    border: 1px solid cornflowerblue;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    /*width: 180px;*/
+    background: blanchedalmond;
+    /*padding-left: 5px;*/
+    /*padding-right: 5px;*/
+}

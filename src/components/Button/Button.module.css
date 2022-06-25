@@ -1,0 +1,23 @@
+.btn {
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    background-color: cornflowerblue;
+}
+
+.btn:hover:not([disabled]) {
+    background-color: #0770af;
+    color: white;
+}
+
+.btn:disabled {
+    background-color: gray;
+    cursor: default;
+}

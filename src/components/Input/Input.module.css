@@ -1,0 +1,21 @@
+.superInput {
+    background: aliceblue;
+    border: 2px solid cornflowerblue;
+    border-radius: 2px;
+    /*font-weight: bold;*/
+    margin-left: 10px;
+    /*margin-right: 5px;*/
+    /*width: fit-content;*/
+    width: 80px;
+    /*min-width: 30px;*/
+    /*width: 10px;*/
+}
+
+.errorInput {
+    border: 2px solid red;
+    background: pink;
+}
+
+.error {
+    color: red;
+}
