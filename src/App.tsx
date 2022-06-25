@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import HomeworkCounter from './components/MondayExamCounter/MondayExamCounter';
 import TuesdayHWCounter from './components/TuesdayHWCounter/TuesdayHWCounter';
 import Links from './components/Links/Links';
@@ -20,14 +20,14 @@ function App() {
 
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className="App">
                 <Links/>
                 <Content/>
                 {/*<HomeworkCounter/>*/}
                 {/*<HomeworkCounterTuesday/>*/}
             </div>
-        </BrowserRouter>
+        </HashRouter>
     )
 
     /*
