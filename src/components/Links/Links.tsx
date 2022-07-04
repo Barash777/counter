@@ -33,6 +33,7 @@ const Links = () => {
                         } to={LINKS.TuesdayHomework.part2}>Tuesday HW2</NavLink></span>
                     </div>
                 </li>
+
             </ul>
         </div>
     );
