@@ -26,6 +26,7 @@ const TuesdayHWCounter2 = () => {
     const [minCounterValue, setMinCounterValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMinValue) || startCantBeLessThan)
     const [maxCounterValue, setMaxCounterValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMaxValue) || 5)
 
+    const [counter, setCounter] = useState(startCantBeLessThan)
 
     const onChangeMinValue = (value: number) => setMinSettingsValue(value)
     const onChangeMaxValue = (value: number) => setMaxSettingsValue(value)
@@ -40,21 +41,19 @@ const TuesdayHWCounter2 = () => {
         setShowSettings(false)
     }
 
-    function invalidParameters() {
+    function invalidParameters(): boolean {
         // 1. check min value; 2. max can't be less than min
-        if (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue) {
-            return true
-        }
+        return (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
     }
 
-    function parametersChanged() {
+    function parametersChanged(): boolean {
         // min and max values are the same as
         return minSettingsValue === getFromLocalStorageHandler(keyForSettingsMinValue) &&
             maxSettingsValue === getFromLocalStorageHandler(keyForSettingsMaxValue)
     }
 
     // disable or not 'set' button
-    function isDisabledButton() {
+    function isDisabledButton(): boolean {
         return invalidParameters() || parametersChanged()
     }
 
@@ -77,6 +76,8 @@ const TuesdayHWCounter2 = () => {
         </span>
             <span className={css.likeInlineBlock}>
             {!showSettings && <Counter
+                counter={counter}
+                setCounter={setCounter}
                 minValue={minCounterValue}
                 maxValue={maxCounterValue}
                 incorrectParameters={invalidParameters()}

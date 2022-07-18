@@ -7,7 +7,12 @@ export const LINKS = {
     TuesdayHomework: {
         part1: '/tuesday-hw/1',
         part2: '/tuesday-hw/2'
+    },
+    WednesdayHomework: {
+        part1: '/wednesday-hw/1',
+        part2: '/wednesday-hw/2'
     }
+
 }
 
 const Links = () => {
@@ -23,7 +28,7 @@ const Links = () => {
                     isActive ? activeClassName : usualClassName
                 } to={LINKS.MondayExam}>Monday exam</NavLink></span></li>
                 <li className={css.dropdown}>
-                    <span className={css.dropbtn}>Dropdown ...</span>
+                    <span className={css.dropbtn}>Tuesday ...</span>
                     <div className={css.dropdownContent}>
                         <span><NavLink className={({isActive}) =>
                             isActive ? activeClassName : usualClassName
@@ -31,6 +36,18 @@ const Links = () => {
                         <span><NavLink className={({isActive}) =>
                             isActive ? activeClassName : usualClassName
                         } to={LINKS.TuesdayHomework.part2}>Tuesday HW2</NavLink></span>
+                    </div>
+                </li>
+
+                <li className={css.dropdown}>
+                    <span className={css.dropbtn}>Wednesday ...</span>
+                    <div className={css.dropdownContent}>
+                        <span><NavLink className={({isActive}) =>
+                            isActive ? activeClassName : usualClassName
+                        } to={LINKS.WednesdayHomework.part1}>Wednesday HW1</NavLink></span>
+                        <span><NavLink className={({isActive}) =>
+                            isActive ? activeClassName : usualClassName
+                        } to={LINKS.WednesdayHomework.part2}>Wednesday HW2</NavLink></span>
                     </div>
                 </li>
 

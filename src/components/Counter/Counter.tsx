@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import Button from '../Button/Button';
 import css from './Counter.module.css'
 import Display from '../Display/Display';
 
 export type CounterPropsType = {
+    counter: number,
+    setCounter: (value: number) => void,
     minValue: number
     maxValue: number
     incorrectParameters?: boolean
@@ -15,28 +17,37 @@ export type CounterPropsType = {
 
 // const Counter: React.FC<CounterPropsType> = ({minValue, maxValue}) => {
 const Counter = ({
-                     minValue, maxValue, setButton, incorrectParameters, changedParameters, callbackSetButton
+                     counter,
+                     setCounter,
+                     minValue,
+                     maxValue,
+                     setButton,
+                     incorrectParameters,
+                     changedParameters,
+                     callbackSetButton
                  }: CounterPropsType) => {
 
-    const [number, setNumber] = useState<number>(minValue)
+    // const [number, setNumber] = useState<number>(minValue)
 
     // check the number after the settings were changed and the number is outside of the range
-    if (number < minValue || number > maxValue) {
-        setNumber(minValue)
-    }
+    useEffect(() => {
+        if (counter < minValue || counter > maxValue) {
+            setCounter(minValue)
+        }
+    }, [counter, minValue, maxValue])
     // number > maxValue && setNumber(maxValue)
 
     const inc = () => {
         // number < maxValue && setNumber(++number)
-        number < maxValue && setNumber(number + 1) // !!! changed !!!
+        counter < maxValue && setCounter(counter + 1) // !!! changed !!!
     }
     const reset = () => {
-        number !== minValue && setNumber(minValue)
+        counter !== minValue && setCounter(minValue)
     }
 
     // const dataClassName = `${css.data} ${number >= maxValue ? css.maxNumber : ''}`
-    let dataClassName = `${css.data} ${number >= maxValue ? css.maxNumber : ''}`
-    let dataString = number.toString()
+    let dataClassName = `${css.data} ${counter >= maxValue ? css.maxNumber : ''}`
+    let dataString = counter.toString()
 
     if (incorrectParameters) {
         dataString = 'Incorrect value!'
@@ -59,8 +70,8 @@ const Counter = ({
                 // data={'Hello my team! You are awesome!'}
             />
             <div className={css.buttonsArea}>
-                <Button disabled={number >= maxValue || isDisabled()} name={'inc'} callback={inc}/>
-                <Button disabled={number <= minValue || isDisabled()} name={'reset'} callback={reset}/>
+                <Button disabled={counter >= maxValue || isDisabled()} name={'inc'} callback={inc}/>
+                <Button disabled={counter <= minValue || isDisabled()} name={'reset'} callback={reset}/>
                 {setButton && <Button name={'set'} callback={callbackSetButton ? callbackSetButton : () => {
                 }}/>}
             </div>

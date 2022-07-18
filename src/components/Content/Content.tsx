@@ -6,6 +6,8 @@ import TuesdayHWCounter from '../TuesdayHWCounter/TuesdayHWCounter';
 import TuesdayHWCounter2 from '../TuesdayHWCounter/TuesdayHWCounter2';
 import Error404 from '../Error404/Error404';
 import css from './Content.module.css'
+import WednesdayHWCounter from '../WednesdayHWCounter/WednesdayHWCounter';
+import WednesdayHWCounter2 from '../WednesdayHWCounter/WednesdayHWCounter2';
 
 
 const Content = () => {
@@ -17,6 +19,8 @@ const Content = () => {
                     <Route path={LINKS.MondayExam} element={<MondayExamCounter/>}/>
                     <Route path={LINKS.TuesdayHomework.part1} element={<TuesdayHWCounter/>}/>
                     <Route path={LINKS.TuesdayHomework.part2} element={<TuesdayHWCounter2/>}/>
+                    <Route path={LINKS.WednesdayHomework.part1} element={<WednesdayHWCounter/>}/>
+                    <Route path={LINKS.WednesdayHomework.part2} element={<WednesdayHWCounter2/>}/>
                     <Route path={'/*'} element={<Error404/>}/>
                 </Routes>
             </div>
