@@ -3,11 +3,10 @@ import Counter from '../Counter/Counter';
 
 const HomeworkCounter = () => {
     const [counter, setCounter] = useState(0)
+    const minValue = 0, maxValue = 5;
 
     return (
-        <>
-            <Counter counter={counter} setCounter={setCounter} minValue={0} maxValue={5}/>
-        </>
+        <Counter counter={counter} setCounter={setCounter} minValue={minValue} maxValue={maxValue}/>
     );
 };
 

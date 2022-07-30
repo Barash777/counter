@@ -20,11 +20,15 @@ const TuesdayHWCounter2 = () => {
 
     const [showSettings, setShowSettings] = useState<boolean>(false)
 
-    const [minSettingsValue, setMinSettingsValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMinValue) || startCantBeLessThan)
-    const [maxSettingsValue, setMaxSettingsValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMaxValue) || 5)
+    const [minSettingsValue, setMinSettingsValue] = useState<number>(
+        getFromLocalStorageHandler(keyForSettingsMinValue) || startCantBeLessThan)
+    const [maxSettingsValue, setMaxSettingsValue] = useState<number>(
+        getFromLocalStorageHandler(keyForSettingsMaxValue) || 5)
 
-    const [minCounterValue, setMinCounterValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMinValue) || startCantBeLessThan)
-    const [maxCounterValue, setMaxCounterValue] = useState<number>(getFromLocalStorageHandler(keyForSettingsMaxValue) || 5)
+    const [minCounterValue, setMinCounterValue] = useState<number>(
+        getFromLocalStorageHandler(keyForSettingsMinValue) || startCantBeLessThan)
+    const [maxCounterValue, setMaxCounterValue] = useState<number>(
+        getFromLocalStorageHandler(keyForSettingsMaxValue) || 5)
 
     const [counter, setCounter] = useState(startCantBeLessThan)
 
@@ -41,21 +45,13 @@ const TuesdayHWCounter2 = () => {
         setShowSettings(false)
     }
 
-    function invalidParameters(): boolean {
-        // 1. check min value; 2. max can't be less than min
-        return (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
-    }
+    const invalidParameters: boolean = (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
 
-    function parametersChanged(): boolean {
-        // min and max values are the same as
-        return minSettingsValue === getFromLocalStorageHandler(keyForSettingsMinValue) &&
-            maxSettingsValue === getFromLocalStorageHandler(keyForSettingsMaxValue)
-    }
+    const parametersChanged: boolean = minSettingsValue === getFromLocalStorageHandler(keyForSettingsMinValue) &&
+        maxSettingsValue === getFromLocalStorageHandler(keyForSettingsMaxValue)
 
     // disable or not 'set' button
-    function isDisabledButton(): boolean {
-        return invalidParameters() || parametersChanged()
-    }
+    const isDisabledButton: boolean = invalidParameters || parametersChanged
 
     const callbackSetButtonHandler = () => {
         setShowSettings(true)
@@ -63,29 +59,27 @@ const TuesdayHWCounter2 = () => {
 
     return (
         <div>
-        <span className={css.likeInlineBlock}>
-            {showSettings && <CounterSettings
-                minValue={minSettingsValue}
-                maxValue={maxSettingsValue}
-                startCantBeLessThan={startCantBeLessThan}
-                onChangeMinValue={onChangeMinValue}
-                onChangeMaxValue={onChangeMaxValue}
-                saveSettings={saveSettings}
-                disabled={isDisabledButton()}
-            />}
-        </span>
             <span className={css.likeInlineBlock}>
-            {!showSettings && <Counter
-                counter={counter}
-                setCounter={setCounter}
-                minValue={minCounterValue}
-                maxValue={maxCounterValue}
-                incorrectParameters={invalidParameters()}
-                changedParameters={!parametersChanged()}
-                setButton={true}
-                callbackSetButton={callbackSetButtonHandler}
-            />}
-        </span>
+                {showSettings
+                    ? <CounterSettings
+                        minValue={minSettingsValue}
+                        maxValue={maxSettingsValue}
+                        startCantBeLessThan={startCantBeLessThan}
+                        onChangeMinValue={onChangeMinValue}
+                        onChangeMaxValue={onChangeMaxValue}
+                        saveSettings={saveSettings}
+                        disabled={isDisabledButton}
+                    /> : <Counter
+                        counter={counter}
+                        setCounter={setCounter}
+                        minValue={minCounterValue}
+                        maxValue={maxCounterValue}
+                        incorrectParameters={invalidParameters}
+                        changedParameters={!parametersChanged}
+                        setButton={true}
+                        callbackSetButton={callbackSetButtonHandler}
+                    />}
+            </span>
         </div>
     );
 

@@ -30,7 +30,6 @@ const WednesdayHWCounter2 = () => {
 
     const setCounterHandler = (value: number) => {
         dispatch(changeCounterValueAC(value))
-        // saveState(store.getState(), keyForState)
     }
 
     const onChangeMinValue = (value: number) => {
@@ -50,24 +49,15 @@ const WednesdayHWCounter2 = () => {
         // save to localStorage
         dispatch(changeMinValueAC(minSettingsValue))
         dispatch(changeMaxValueAC(maxSettingsValue))
-        // saveState(store.getState(), keyForState)
     }
 
-    function invalidParameters(): boolean {
-        // 1. check min value; 2. max can't be less than min
-        return (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
-    }
+    const invalidParameters: boolean = (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
 
-    function parametersChanged(): boolean {
-        // min and max values are the same as
-        return minSettingsValue === minSettingsValueStart &&
-            maxSettingsValue === maxSettingsValueStart
-    }
+    const parametersChanged: boolean = minSettingsValue === minSettingsValueStart &&
+        maxSettingsValue === maxSettingsValueStart
 
     // disable or not 'set' button
-    function isDisabledButton(): boolean {
-        return invalidParameters() || parametersChanged()
-    }
+    const isDisabledButton: boolean = invalidParameters || parametersChanged
 
     const callbackSetButtonHandler = () => {
         setShowSettings(true)
@@ -76,27 +66,25 @@ const WednesdayHWCounter2 = () => {
     return (
         <div>
             <span className={css.likeInlineBlock}>
-                {showSettings && <CounterSettings
-                    minValue={minSettingsValue}
-                    maxValue={maxSettingsValue}
-                    startCantBeLessThan={startCantBeLessThan}
-                    onChangeMinValue={onChangeMinValue}
-                    onChangeMaxValue={onChangeMaxValue}
-                    saveSettings={saveSettings}
-                    disabled={isDisabledButton()}
-                />}
-            </span>
-            <span className={css.likeInlineBlock}>
-                {!showSettings && <Counter
-                    counter={counterValue}
-                    setCounter={setCounterHandler}
-                    minValue={minCounterValue}
-                    maxValue={maxCounterValue}
-                    incorrectParameters={invalidParameters()}
-                    changedParameters={!parametersChanged()}
-                    setButton={true}
-                    callbackSetButton={callbackSetButtonHandler}
-                />}
+                {showSettings
+                    ? <CounterSettings
+                        minValue={minSettingsValue}
+                        maxValue={maxSettingsValue}
+                        startCantBeLessThan={startCantBeLessThan}
+                        onChangeMinValue={onChangeMinValue}
+                        onChangeMaxValue={onChangeMaxValue}
+                        saveSettings={saveSettings}
+                        disabled={isDisabledButton}
+                    /> : <Counter
+                        counter={counterValue}
+                        setCounter={setCounterHandler}
+                        minValue={minCounterValue}
+                        maxValue={maxCounterValue}
+                        incorrectParameters={invalidParameters}
+                        changedParameters={!parametersChanged}
+                        setButton={true}
+                        callbackSetButton={callbackSetButtonHandler}
+                    />}
             </span>
         </div>
     );

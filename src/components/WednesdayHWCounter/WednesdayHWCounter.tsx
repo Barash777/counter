@@ -5,7 +5,7 @@ import css from './WednesdayHWCounter.module.css'
 import {AppStateType} from '../../app/store';
 import {useSelector, useDispatch} from 'react-redux'
 import {changeCounterValueAC, changeMaxValueAC, changeMinValueAC} from '../../reducers/counterReducer';
-import {loadState, saveState} from '../../app/localStorage';
+import {loadState} from '../../app/localStorage';
 
 
 // const keyForState = 'WednesdayHWState'
@@ -53,21 +53,14 @@ const WednesdayHWCounter = () => {
         // saveState(store.getState(), keyForState)
     }
 
-    function invalidParameters(): boolean {
-        // 1. check min value; 2. max can't be less than min
-        return (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
-    }
 
-    function parametersChanged(): boolean {
-        // min and max values are the same as
-        return minSettingsValue === minSettingsValueStart &&
-            maxSettingsValue === maxSettingsValueStart
-    }
+    const invalidParameters: boolean = (minSettingsValue < startCantBeLessThan || maxSettingsValue <= minSettingsValue)
+
+    const parametersChanged: boolean = minSettingsValue === minSettingsValueStart &&
+        maxSettingsValue === maxSettingsValueStart
 
     // disable or not 'set' button
-    function isDisabledButton(): boolean {
-        return invalidParameters() || parametersChanged()
-    }
+    const isDisabledButton: boolean = invalidParameters || parametersChanged
 
 
     return (
@@ -80,7 +73,7 @@ const WednesdayHWCounter = () => {
                     onChangeMinValue={onChangeMinValue}
                     onChangeMaxValue={onChangeMaxValue}
                     saveSettings={saveSettings}
-                    disabled={isDisabledButton()}
+                    disabled={isDisabledButton}
                 />
             </span>
             <span className={css.likeInlineBlock}>
@@ -89,8 +82,8 @@ const WednesdayHWCounter = () => {
                     setCounter={setCounterHandler}
                     minValue={minCounterValue}
                     maxValue={maxCounterValue}
-                    incorrectParameters={invalidParameters()}
-                    changedParameters={!parametersChanged()}
+                    incorrectParameters={invalidParameters}
+                    changedParameters={!parametersChanged}
                 />
             </span>
         </div>
