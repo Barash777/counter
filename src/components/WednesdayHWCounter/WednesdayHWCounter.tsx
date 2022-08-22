@@ -5,7 +5,6 @@ import css from './WednesdayHWCounter.module.css'
 import {AppStateType} from '../../app/store';
 import {useSelector, useDispatch} from 'react-redux'
 import {changeCounterValueAC, changeMaxValueAC, changeMinValueAC} from '../../reducers/counterReducer';
-import {loadState} from '../../app/localStorage';
 
 
 // const keyForState = 'WednesdayHWState'
@@ -14,7 +13,9 @@ const defaultMaxValue = 5;
 
 const WednesdayHWCounter = () => {
 
-    const state = loadState()
+    const state = useSelector<AppStateType, AppStateType>((state: AppStateType) => state)
+    const counterValue = useSelector<AppStateType, number>((state: AppStateType) => state.counter.value);
+
     const minSettingsValueStart = state?.counter.min ?? startCantBeLessThan;
     const maxSettingsValueStart = state?.counter.max ?? defaultMaxValue;
 
@@ -24,9 +25,6 @@ const WednesdayHWCounter = () => {
     const [minCounterValue, setMinCounterValue] = useState<number>(minSettingsValueStart || startCantBeLessThan)
     const [maxCounterValue, setMaxCounterValue] = useState<number>(maxSettingsValueStart || defaultMaxValue)
 
-
-    const counterValue = useSelector((state: AppStateType) => state.counter.value);
-    // console.log('counterValue = ', counterValue)
     const dispatch = useDispatch();
 
     const setCounterHandler = (value: number) => {

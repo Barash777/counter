@@ -8,7 +8,7 @@ export default configureStore({
 import {combineReducers, legacy_createStore as createStore} from 'redux';
 import counterReducer from '../reducers/counterReducer';
 import {loadState, saveState} from './localStorage';
-import {throttle} from 'lodash';
+// import {throttle} from 'lodash';
 
 export const rootReducer = combineReducers({
     counter: counterReducer
@@ -27,12 +27,10 @@ store.subscribe(() => {
     });
 });
 
-/*
-store.subscribe(throttle(() => {
+/*store.subscribe(throttle(() => {
     saveState({
         counter: store.getState().counter
     });
-}, 1000));
-*/
+}, 1000));*/
 
 export default store;
